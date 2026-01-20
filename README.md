@@ -30,7 +30,7 @@ El flujo de datos conecta el hardware físico con la lógica de negocio y la int
 
 ```mermaid
 graph LR
-    A[NTAG215 (Basura)] -->|NFC| B[Lectores RC522 (Tachos)]
+    A["NTAG215 (Basura)"] -->|NFC| B[Lectores RC522 (Tachos)]
     B -->|SPI| C[Arduino Mega 2560]
     C -->|Serial| D[Middleware Python]
     D -->|WebSockets| E[Interfaz Godot]
