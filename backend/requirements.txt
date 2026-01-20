@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pandas
+joblib
+# Aquí forzamos la versión con la que se creó el modelo para evitar el error
+scikit-learn==1.6.1
+numpy
