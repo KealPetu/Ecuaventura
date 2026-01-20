@@ -13,7 +13,8 @@ config_version=5
 config/name="Ecuaventura"
 run/main_scene="uid://cpyoftb7rluua"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://drpe0jd8s8xfm"
+config/icon="uid://drpe0jd8s8xfm"
 
 [display]
 

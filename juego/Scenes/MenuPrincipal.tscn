@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcldltt5yk47g"]
+
+[ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_3k1ur"]
+[ext_resource type="Theme" uid="uid://dmk8nta0isnn3" path="res://Styles/tema_UI.tres" id="2_wvohi"]
+[ext_resource type="FontFile" uid="uid://15ksbgidh1k3" path="res://Assets/minecraft-font/MinecraftRegular-Bmg3.otf" id="3_bt1tr"]
+
+[node name="MenuPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fondo_Parallax" parent="." instance=ExtResource("1_3k1ur")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_wvohi")
+theme_override_fonts/font = ExtResource("3_bt1tr")
+theme_override_font_sizes/font_size = 32
+text = "Modo clasico"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_wvohi")
+theme_override_fonts/font = ExtResource("3_bt1tr")
+theme_override_font_sizes/font_size = 32
+text = "Modo Contrareloj"

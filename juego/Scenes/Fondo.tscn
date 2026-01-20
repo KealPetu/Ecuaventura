@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt7y5rkrqt62k"]
+
+[ext_resource type="Script" uid="uid://c3buw8eybo2gg" path="res://Scripts/Fondo.gd" id="1_rmb8c"]
+[ext_resource type="Texture2D" uid="uid://rmssxatdtren" path="res://Assets/fondo/1.png" id="2_gu8q8"]
+[ext_resource type="Texture2D" uid="uid://jj5ljcwniau7" path="res://Assets/fondo/2.png" id="3_wi7no"]
+[ext_resource type="Texture2D" uid="uid://brembqxkqkekl" path="res://Assets/fondo/3.png" id="4_rmd16"]
+[ext_resource type="Texture2D" uid="uid://faustajh8m6f" path="res://Assets/fondo/4.png" id="5_u5wat"]
+
+[node name="Fondo_Parallax" type="Node2D"]
+scale = Vector2(2.8, 2.8)
+script = ExtResource("1_rmb8c")
+
+[node name="capa_1" type="Parallax2D" parent="."]
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-0.1, 0)
+follow_viewport = false
+
+[node name="1" type="Sprite2D" parent="capa_1"]
+texture = ExtResource("2_gu8q8")
+centered = false
+
+[node name="capa_2" type="Parallax2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-1, 0)
+follow_viewport = false
+
+[node name="2" type="Sprite2D" parent="capa_2"]
+texture = ExtResource("3_wi7no")
+centered = false
+
+[node name="capa_3" type="Parallax2D" parent="."]
+scale = Vector2(0.9999994, 0.9999994)
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-100, 0)
+follow_viewport = false
+
+[node name="3" type="Sprite2D" parent="capa_3"]
+texture = ExtResource("4_rmd16")
+centered = false
+
+[node name="capa_4" type="Parallax2D" parent="."]
+scale = Vector2(0.99999964, 0.99999964)
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-1, 0)
+follow_viewport = false
+
+[node name="4" type="Sprite2D" parent="capa_4"]
+texture = ExtResource("5_u5wat")
+centered = false
