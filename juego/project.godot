@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://drpe0jd8s8xfm"
 config/icon="uid://drpe0jd8s8xfm"
 
+[autoload]
+
+NetworkManager="*res://Scripts/NetworkManager.gd"
+
 [display]
 
 window/size/viewport_width=1600

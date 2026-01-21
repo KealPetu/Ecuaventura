@@ -47,4 +47,6 @@ texture = ExtResource("10_num37")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [editable path="Fondo_Parallax"]
