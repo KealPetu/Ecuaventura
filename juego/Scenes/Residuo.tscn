@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs08bgvh0tfbu"]
+
+[ext_resource type="Script" uid="uid://dir173wfohh1g" path="res://Scripts/Residuo.gd" id="1_ivnyu"]
+
+[node name="Residuo" type="Node2D"]
+script = ExtResource("1_ivnyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Nombre" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 17.0
