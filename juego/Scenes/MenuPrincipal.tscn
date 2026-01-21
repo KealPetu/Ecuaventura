@@ -1,8 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcldltt5yk47g"]
+[gd_scene load_steps=10 format=3 uid="uid://dcldltt5yk47g"]
 
 [ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_3k1ur"]
+[ext_resource type="Script" uid="uid://cxr0v0ure4lfv" path="res://Scripts/MenuPrincipal.gd" id="1_8kh3b"]
 [ext_resource type="Theme" uid="uid://dmk8nta0isnn3" path="res://Styles/tema_UI.tres" id="2_wvohi"]
 [ext_resource type="FontFile" uid="uid://15ksbgidh1k3" path="res://Assets/minecraft-font/MinecraftRegular-Bmg3.otf" id="3_bt1tr"]
+[ext_resource type="Texture2D" uid="uid://drpe0jd8s8xfm" path="res://logo.png" id="4_l10t8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbekh"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtrnu"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l10t8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kh3b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -11,10 +63,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8kh3b")
 
 [node name="Fondo_Parallax" parent="." instance=ExtResource("1_3k1ur")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ContenedorGeneral" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,20 +75,79 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="PanelSuperior" type="HBoxContainer" parent="ContenedorGeneral"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme = ExtResource("2_wvohi")
-theme_override_fonts/font = ExtResource("3_bt1tr")
-theme_override_font_sizes/font_size = 32
-text = "Modo clasico"
+size_flags_vertical = 2
+alignment = 1
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="BotonRegresar" type="Button" parent="ContenedorGeneral/PanelSuperior"]
+custom_minimum_size = Vector2(235, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_wvohi")
+theme_override_fonts/font = ExtResource("3_bt1tr")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_hbekh")
+text = "⬅️ Regresar"
+language = "es_EC"
+
+[node name="Logo" type="TextureRect" parent="ContenedorGeneral/PanelSuperior"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("4_l10t8")
+expand_mode = 1
+
+[node name="BotonComoJugar" type="Button" parent="ContenedorGeneral/PanelSuperior"]
+custom_minimum_size = Vector2(235, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_wvohi")
+theme_override_fonts/font = ExtResource("3_bt1tr")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_vtrnu")
+text = "¿Cómo Jugar? 😵‍💫"
+language = "es_EC"
+
+[node name="EtiquetaEscogerModo" type="Label" parent="ContenedorGeneral"]
+layout_mode = 2
+theme = ExtResource("2_wvohi")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_bt1tr")
+theme_override_font_sizes/font_size = 64
+text = "Escoge un modo de Juego"
+horizontal_alignment = 1
+vertical_alignment = 1
+language = "es_EC"
+
+[node name="PanelInferior" type="HBoxContainer" parent="ContenedorGeneral"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="BotonModoClasico" type="Button" parent="ContenedorGeneral/PanelInferior"]
+custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme = ExtResource("2_wvohi")
 theme_override_fonts/font = ExtResource("3_bt1tr")
 theme_override_font_sizes/font_size = 32
-text = "Modo Contrareloj"
+theme_override_styles/focus = SubResource("StyleBoxFlat_l10t8")
+text = "Modo Clásico 🕹️"
+language = "es_EC"
+
+[node name="BotonModoContrareloj" type="Button" parent="ContenedorGeneral/PanelInferior"]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_wvohi")
+theme_override_fonts/font = ExtResource("3_bt1tr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_8kh3b")
+text = "Modo Contrareloj 🕗"
+language = "es_EC"
