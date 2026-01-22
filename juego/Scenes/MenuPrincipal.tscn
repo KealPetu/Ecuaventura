@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_3k1ur"]
 [ext_resource type="Script" uid="uid://cxr0v0ure4lfv" path="res://Scripts/MenuPrincipal.gd" id="1_8kh3b"]
 [ext_resource type="Theme" uid="uid://dmk8nta0isnn3" path="res://Styles/tema_UI.tres" id="2_wvohi"]
-[ext_resource type="FontFile" uid="uid://15ksbgidh1k3" path="res://Assets/minecraft-font/MinecraftRegular-Bmg3.otf" id="3_bt1tr"]
+[ext_resource type="FontFile" uid="uid://15ksbgidh1k3" path="res://Assets/Fonts/MinecraftRegular-Bmg3.otf" id="3_bt1tr"]
 [ext_resource type="Texture2D" uid="uid://drpe0jd8s8xfm" path="res://logo.png" id="4_l10t8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbekh"]
@@ -140,7 +140,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_l10t8")
 text = "Modo Clásico 🕹️"
 language = "es_EC"
 
-[node name="BotonModoContrareloj" type="Button" parent="ContenedorGeneral/PanelInferior"]
+[node name="BotonModoContrarreloj" type="Button" parent="ContenedorGeneral/PanelInferior"]
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 6

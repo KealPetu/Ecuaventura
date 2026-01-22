@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhgs0gl6sea4s"]
+
+[ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_33bv1"]
+[ext_resource type="Script" uid="uid://qjiparathki" path="res://Scripts/NivelReciclaje.gd" id="1_tbp4o"]
+[ext_resource type="Texture2D" uid="uid://b80jxu1e5ag0l" path="res://Assets/Sprites/fondo_2/1.png" id="2_f7scs"]
+[ext_resource type="Texture2D" uid="uid://fybnska08xnq" path="res://Assets/Sprites/fondo_2/2.png" id="3_onuyi"]
+[ext_resource type="Texture2D" uid="uid://dak2anm4ol6tg" path="res://Assets/Sprites/fondo_2/3.png" id="4_jh41q"]
+[ext_resource type="Texture2D" uid="uid://bsurq1r8jiai6" path="res://Assets/Sprites/fondo_2/4.png" id="5_i6715"]
+[ext_resource type="Texture2D" uid="uid://cq28867pn810y" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-papel.png" id="6_i6715"]
+[ext_resource type="Texture2D" uid="uid://owxtr0awihq7" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-plastico.png" id="7_tbp4o"]
+[ext_resource type="Texture2D" uid="uid://dqqyr3j0by0jw" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-organico.png" id="8_n6f2f"]
+
+[node name="NivelReciclaje" type="Node2D"]
+script = ExtResource("1_tbp4o")
+
+[node name="Fondo_Parallax" parent="." instance=ExtResource("1_33bv1")]
+
+[node name="1" parent="Fondo_Parallax/capa_1" index="0"]
+texture = ExtResource("2_f7scs")
+
+[node name="2" parent="Fondo_Parallax/capa_2" index="0"]
+texture = ExtResource("3_onuyi")
+
+[node name="3" parent="Fondo_Parallax/capa_3" index="0"]
+texture = ExtResource("4_jh41q")
+
+[node name="4" parent="Fondo_Parallax/capa_4" index="0"]
+texture = ExtResource("5_i6715")
+
+[node name="ContenedorBasuraActual" type="Node2D" parent="."]
+position = Vector2(800, 450)
+
+[node name="SpriteBasura" type="Sprite2D" parent="ContenedorBasuraActual"]
+
+[node name="ContenedorTachos" type="HBoxContainer" parent="."]
+offset_top = 599.0
+offset_right = 1600.0
+offset_bottom = 1117.0
+alignment = 1
+
+[node name="TachoPapel" type="Sprite2D" parent="ContenedorTachos"]
+position = Vector2(300, 320)
+texture = ExtResource("6_i6715")
+
+[node name="TachoPlastico" type="Sprite2D" parent="ContenedorTachos"]
+position = Vector2(800, 320)
+texture = ExtResource("7_tbp4o")
+
+[node name="TachoOrganico" type="Sprite2D" parent="ContenedorTachos"]
+position = Vector2(1300, 320)
+texture = ExtResource("8_n6f2f")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Puntaje" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TiempoOIntentos" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="FeedbackVisual" type="TextureRect" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[editable path="Fondo_Parallax"]

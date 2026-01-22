@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c634a2whr7jqr"]
-
-[ext_resource type="PackedScene" uid="uid://bxe5xtcamv86q" path="res://Scenes/NivelBase.tscn" id="1_u8kt2"]
-[ext_resource type="Script" uid="uid://b0bg1cmqu6h3j" path="res://Scripts/NivelTutorial.gd" id="2_6i5r1"]
-
-[node name="NivelBase" instance=ExtResource("1_u8kt2")]
-script = ExtResource("2_6i5r1")
-
-[editable path="Fondo_Parallax"]

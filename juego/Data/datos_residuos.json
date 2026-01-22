@@ -2,16 +2,16 @@
 	"04 B1 51 4C 2A 02 89": {
 		"nombre": "Botella de Agua",
 		"tipo": "plastico",
-		"textura": "res://Assets/basuras/Plástico/Plastico-botella-de-agua.png"
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-botella-de-agua.png"
 	},
 	"04 01 9E 48 2A 02 89": {
 		"nombre": "Cáscara de Banana",
 		"tipo": "organico",
-		"textura": "res://Assets/basuras/Orgánico/Organico-Cascara-de-platano.png"
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos//Orgánico/Organico-Cascara-de-platano.png"
 	},
 	"04 11 59 39 2A 02 89": {
 		"nombre": "Periódico Viejo",
 		"tipo": "papel",
-		"textura": "res://Assets/basuras/Papel/Papel-periodicos.png"
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos//Papel/Papel-periodicos.png"
 	}
 }
