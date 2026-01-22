@@ -5,10 +5,14 @@ extends Node
 var dificultad_actual: String = "medio" # puede ser "bajo", "medio", "alto"
 var ultimo_resultado_ml: Dictionary = {}
 
-# --- NUEVAS VARIABLES LEADERBOARD ---
+# --- VARIABLES LEADERBOARD ---
 var nombre_jugador: String = "Jugador" # Valor por defecto
 var ruta_leaderboard: String = "user://leaderboard.json"
 var datos_leaderboard: Array = []
+
+# --- NUEVO: CONFIGURACIÓN DINÁMICA DEL SERVIDOR ---
+# Aquí guardaremos el objeto "configuracion_nivel_siguiente" entero
+var config_proximo_nivel: Dictionary = {}
 
 func _ready() -> void:
 	cargar_leaderboard()
@@ -54,14 +58,15 @@ func guardar_en_disco():
 	file.close()
 
 # Configuraciones de dificultad
+# Configuraciones por defecto (Fallback por si el servidor falla o es la primera partida)
 # Ejemplo: tiempo límite en contrarreloj, o velocidad de caída si añades gravedad
-var config_dificultad = {
+var config_base = {
 	"bajo": {"tiempo_limite": 90, "intentos_clasico": 15},
 	"medio": {"tiempo_limite": 60, "intentos_clasico": 10},
 	"alto": {"tiempo_limite": 45, "intentos_clasico": 7}
 }
 
-func actualizar_dificultad(prediccion_modelo: String):
-	print("Actualizando dificultad a: ", prediccion_modelo)
-	dificultad_actual = prediccion_modelo
-	# Aquí podrías guardar esto en un archivo de guardado local si quisieras persistencia al cerrar el juego
+func actualizar_datos_servidor(perfil: String, config_nivel: Dictionary):
+	dificultad_actual = perfil
+	config_proximo_nivel = config_nivel
+	print("GameManager actualizado. Perfil: ", perfil, " | Params: ", config_nivel.get("parametros", {}))

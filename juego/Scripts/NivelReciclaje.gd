@@ -39,6 +39,8 @@ var tiempo_inicio: int = 0
 # Parámetros de dificultad (se cargan desde GameManager)
 var max_intentos: int = 10
 var tiempo_limite: int = 30
+# Asegúrate de tener esta variable declarada si usas la velocidad de spawn para animaciones
+var velocidad_spawn_actual: float = 1.0
 
 func _ready():
 	cargar_datos_json()
@@ -70,38 +72,69 @@ func cargar_datos_json():
 		print("No se encontró el archivo JSON")
 
 func configurar_partida():
-	# Cargar dificultad desde el Singleton
-	var config = GameManager.config_dificultad[GameManager.dificultad_actual]
-	
 	tiempo_inicio = Time.get_unix_time_from_system()
 	
-	# Preparar lista aleatoria sin repeticiones
-	lista_ordenada_juego = base_datos_residuos.keys()
-	lista_ordenada_juego.shuffle()
+	# Reiniciamos la lista de juego
+	lista_ordenada_juego = []
 	
-	match modo_juego:
-		Modos.CLASICO:
-			max_intentos = config["intentos_clasico"] if modo_juego == Modos.CLASICO else 5
-			
-			barra_tiempo.visible = false
-			contenedor_caras.visible = true
-			generar_caras_iniciales()
+	# 1. VERIFICAR SI HAY CONFIGURACIÓN DEL SERVIDOR
+	if not GameManager.config_proximo_nivel.is_empty():
+		print("Aplicando configuración del servidor...")
+		var params = GameManager.config_proximo_nivel["parametros"]
+		var assets_servidor = GameManager.config_proximo_nivel["assets_residuos"]
 		
-		Modos.CONTRARRELOJ:
-			tiempo_limite = config["tiempo_limite"]
+		# A. Aplicar Parámetros numéricos
+		if modo_juego == Modos.CONTRARRELOJ:
+			tiempo_limite = int(params["tiempo_limite_segundos"])
 			timer_nivel.wait_time = tiempo_limite
-			timer_nivel.timeout.connect(finalizar_juego)
 			timer_nivel.start()
-			
-			contenedor_caras.visible = false
-			barra_tiempo.visible = true
 			barra_tiempo.max_value = tiempo_limite
 			barra_tiempo.value = tiempo_limite
-		Modos.TUTORIAL:
-			max_intentos = 5 # Tutorial corto
-			label_info.text = "Tutorial: 0 / 5"
+		
+		# (Opcional) Usar velocidad_spawn para acelerar animaciones si lo deseas
+		if params.has("velocidad_spawn"):
+			velocidad_spawn_actual = params["velocidad_spawn"]
+			
+		# B. Cargar SOLO los residuos que mandó el servidor
+		# El servidor manda una lista de objetos: [{"id": "...", "nombre": "..."}, ...]
+		for item in assets_servidor:
+			var id_residuo = item["id"]
+			# Verificamos que tengamos la textura y datos de ese ID en nuestro JSON local
+			if base_datos_residuos.has(id_residuo):
+				lista_ordenada_juego.append(id_residuo)
+			else:
+				print("Advertencia: El servidor pidió ID ", id_residuo, " pero no está en datos_residuos.json")
+		
+		# Si por alguna razón la lista quedó vacía (ids incorrectos), llenamos con fallback
+		if lista_ordenada_juego.is_empty():
+			lista_ordenada_juego = base_datos_residuos.keys()
+			lista_ordenada_juego.shuffle()
+			
+	else:
+		# 2. CONFIGURACIÓN DEFAULT (Si no hay datos del servidor o es primera partida)
+		print("Usando configuración local por defecto.")
+		var config_local = GameManager.config_base[GameManager.dificultad_actual]
+		
+		lista_ordenada_juego = base_datos_residuos.keys()
+		lista_ordenada_juego.shuffle()
+		
+		if modo_juego == Modos.CONTRARRELOJ:
+			tiempo_limite = config_local["tiempo_limite"]
+			timer_nivel.wait_time = tiempo_limite
+			timer_nivel.start()
+			barra_tiempo.max_value = tiempo_limite
+			barra_tiempo.value = tiempo_limite
 
-# ### NUEVO: FUNCIÓN PARA CREAR LAS CARAS ###
+	# Ajustes visuales de UI
+	if modo_juego == Modos.CLASICO or modo_juego == Modos.TUTORIAL:
+		barra_tiempo.visible = false
+		contenedor_caras.visible = true
+		generar_caras_iniciales()
+	elif modo_juego == Modos.CONTRARRELOJ:
+		contenedor_caras.visible = false
+		barra_tiempo.visible = true
+
+# ### FUNCIÓN PARA CREAR LAS CARAS ###
 func generar_caras_iniciales():
 	# Limpiar hijos anteriores si reiniciamos
 	for hijo in contenedor_caras.get_children():
@@ -376,16 +409,33 @@ func enviar_datos_backend():
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.new()
-		json.parse(body.get_string_from_utf8())
-		var respuesta = json.data
+		var error = json.parse(body.get_string_from_utf8())
 		
-		print("Respuesta del servidor: ", respuesta)
-		
-		# IMPORTANTE: Aquí actualizamos la dificultad para la PROXIMA partida
-		if respuesta.has("prediccion"):
-			GameManager.actualizar_dificultad(respuesta["prediccion"])
-			popup_resultados.actualizar_texto_dificultad(respuesta["prediccion"])
-		
+		if error == OK:
+			var respuesta = json.data
+			print("Respuesta completa del servidor: ", respuesta)
+			
+			# Navegamos la nueva estructura JSON
+			if respuesta.has("jugador") and respuesta.has("configuracion_nivel_siguiente"):
+				
+				# 1. Extraer Perfil
+				var perfil_nuevo = respuesta["jugador"]["perfil_predicho"] # "alto", "medio", "bajo"
+				
+				# 2. Extraer Configuración detallada
+				var config_nivel = respuesta["configuracion_nivel_siguiente"]
+				
+				# 3. Guardar en GameManager
+				GameManager.actualizar_datos_servidor(perfil_nuevo, config_nivel)
+				
+				# 4. Actualizar Popup
+				popup_resultados.actualizar_texto_dificultad(perfil_nuevo)
+				
+				# (Opcional) Mostrar confianza en consola
+				var confianza = respuesta["jugador"]["confianza"][perfil_nuevo]
+				print("Confianza del modelo: ", confianza)
+				
+		else:
+			print("Error al parsear JSON de respuesta")
 	else:
 		print("Error del servidor: Código ", response_code)
-		popup_resultados.actualizar_texto_dificultad("Error de conexión (Mantiene: " + GameManager.dificultad_actual + ")")
+		popup_resultados.actualizar_texto_dificultad("Error Conexión")
