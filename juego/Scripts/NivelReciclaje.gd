@@ -4,7 +4,7 @@ extends Node2D
 enum Modos { CLASICO, CONTRARRELOJ, TUTORIAL }
 @export var modo_juego: Modos = Modos.CLASICO
 
-var predict_url = "https://6a28de3a8281.ngrok-free.app/predecir"
+var predict_url = "http://localhost:8000/predecir"
 
 # --- WEBSOCKET VARS ---
 var socket = WebSocketPeer.new()
@@ -18,6 +18,7 @@ var ultimo_uid_procesado = "" # Para evitar procesar el mismo mensaje dos veces 
 @onready var label_puntaje = $UI/Puntaje
 @onready var timer_nivel = $Timer
 @onready var feedback_visual = $UI/FeedbackVisual
+@onready var popup_resultados = $CapaUI/PopupResultados
 
 # Datos
 var base_datos_residuos: Dictionary = {}
@@ -252,21 +253,26 @@ func finalizar_juego():
 	juego_terminado = true
 	timer_nivel.stop()
 	
+	# Calcular estadísticas finales
+	var precision = 0.0
+	if intentos_totales > 0:
+		precision = float(aciertos) / float(intentos_totales)
+	
 	# 1. Guardar en Leaderboard LOCAL
 	var nombre_modo = "Clásico"
 	if modo_juego == Modos.CONTRARRELOJ: nombre_modo = "Contrarreloj"
 	elif modo_juego == Modos.TUTORIAL: nombre_modo = "Tutorial"
 	
-	# Solo guardamos si no es tutorial (opcional)
+	# Solo guardamos si no es tutorial
 	if modo_juego != Modos.TUTORIAL:
 		GameManager.registrar_puntaje(puntaje, nombre_modo)
 	
-	# 2. Enviar a Backend (Tu lógica existente)
+	# 2. MOSTRAR POPUP
+	popup_resultados.mostrar_datos(puntaje, precision, aciertos, intentos_totales)
+	
+	# 3. Enviar a Backend (Tu lógica existente)
 	print("Juego Terminado. Enviando datos...")
 	enviar_datos_backend()
-	
-	# Mostrar Feedback visual de "Juego Terminado"
-	# y ofrecer botón para ir al menú o ver leaderboard
 
 func enviar_datos_backend():
 	var duracion_segundos = Time.get_unix_time_from_system() - tiempo_inicio
@@ -313,7 +319,8 @@ func _on_request_completed(result, response_code, headers, body):
 		# IMPORTANTE: Aquí actualizamos la dificultad para la PROXIMA partida
 		if respuesta.has("prediccion"):
 			GameManager.actualizar_dificultad(respuesta["prediccion"])
-			
-		# Aquí mostrarías una ventana de "Game Over" con un botón para volver al menú
+			popup_resultados.actualizar_texto_dificultad(respuesta["prediccion"])
+		
 	else:
 		print("Error del servidor: Código ", response_code)
+		popup_resultados.actualizar_texto_dificultad("Error de conexión (Mantiene: " + GameManager.dificultad_actual + ")")

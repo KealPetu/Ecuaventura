@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhgs0gl6sea4s"]
+[gd_scene load_steps=12 format=3 uid="uid://dhgs0gl6sea4s"]
 
 [ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_33bv1"]
 [ext_resource type="Script" uid="uid://qjiparathki" path="res://Scripts/NivelReciclaje.gd" id="1_tbp4o"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cq28867pn810y" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-papel.png" id="6_i6715"]
 [ext_resource type="Texture2D" uid="uid://owxtr0awihq7" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-plastico.png" id="7_tbp4o"]
 [ext_resource type="Texture2D" uid="uid://dqqyr3j0by0jw" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-organico.png" id="8_n6f2f"]
+[ext_resource type="Script" uid="uid://bg7nb8uektr82" path="res://Scripts/PopupResultados.gd" id="10_7p3bt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7p3bt"]
+bg_color = Color(0, 0, 0, 0.7490196)
 
 [node name="NivelReciclaje" type="Node2D"]
 script = ExtResource("1_tbp4o")
@@ -67,5 +71,85 @@ offset_bottom = 40.0
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CapaUI" type="CanvasLayer" parent="."]
+
+[node name="PopupResultados" type="Control" parent="CapaUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_7p3bt")
+
+[node name="Panel" type="Panel" parent="CapaUI/PopupResultados"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7p3bt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CapaUI/PopupResultados/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Titulo" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "!Juego Terminado!"
+horizontal_alignment = 1
+
+[node name="LblPuntaje" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+text = "Puntaje Final: 0"
+horizontal_alignment = 1
+
+[node name="LblPrecision" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+text = "Precision: 0%"
+horizontal_alignment = 1
+
+[node name="LblDificultad" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+text = "Nueva Dificultad: Calculando..."
+horizontal_alignment = 1
+
+[node name="Botones" type="HBoxContainer" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 1
+
+[node name="BtnReintentar" type="Button" parent="CapaUI/PopupResultados/Panel/VBoxContainer/Botones"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 32
+text = "Intentar de nuevo"
+
+[node name="BtnMenu" type="Button" parent="CapaUI/PopupResultados/Panel/VBoxContainer/Botones"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 32
+text = "Menu"
+
+[node name="BtnLeaderboard" type="Button" parent="CapaUI/PopupResultados/Panel/VBoxContainer/Botones"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 32
+text = "Leaderboard"
 
 [editable path="Fondo_Parallax"]
