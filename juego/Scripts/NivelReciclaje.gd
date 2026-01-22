@@ -4,6 +4,8 @@ extends Node2D
 enum Modos { CLASICO, CONTRARRELOJ, TUTORIAL }
 @export var modo_juego: Modos = Modos.CLASICO
 
+var predict_url = "https://6a28de3a8281.ngrok-free.app/predecir"
+
 # --- WEBSOCKET VARS ---
 var socket = WebSocketPeer.new()
 var websocket_url = "ws://127.0.0.1:8080" # Cambia esto a la IP/Puerto de tu emisor
@@ -296,7 +298,7 @@ func enviar_datos_backend():
 	var body = JSON.stringify(payload)
 	
 	# Enviar POST a localhost
-	var error = http_request.request("http://localhost:8000/predecir", headers, HTTPClient.METHOD_POST, body)
+	var error = http_request.request(predict_url, headers, HTTPClient.METHOD_POST, body)
 	if error != OK:
 		print("Error al intentar conectar con el servidor: ", error)
 

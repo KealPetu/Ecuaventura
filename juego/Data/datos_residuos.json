@@ -7,7 +7,7 @@
 	"04 01 9E 48 2A 02 89": {
 		"nombre": "Envase de Comida para Llevar",
 		"tipo": "plastico",
-		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envases-de-comer-para-llevar.png"
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envases-de-comida-para-llevar.png"
 	},
 	"04 11 59 39 2A 02 89": {
 		"nombre": "Envase de Yogurt",
