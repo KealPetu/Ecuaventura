@@ -1,17 +1,151 @@
 {
 	"04 B1 51 4C 2A 02 89": {
+		"nombre": "Envases de Productos de Limpieza",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envases-de-productos-de-limpieza.png"
+	},
+	"04 01 9E 48 2A 02 89": {
+		"nombre": "Envase de Comida para Llevar",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envases-de-comer-para-llevar.png"
+	},
+	"04 11 59 39 2A 02 89": {
+		"nombre": "Envase de Yogurt",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envase-deyogurt.png"
+	},
+	"04 61 30 41 2A 02 89": {
+		"nombre": "Envase de Shampoo",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envase-de-shampoo.png"
+	},
+	"04 D1 36 41 2A 02 89": {
+		"nombre": "Envase de Detergente",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-envase-de-detergente.png"
+	},
+	"04 91 B5 46 2A 02 89": {
+		"nombre": "Botella de Aceite de Cocina",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-botellas-de-aceite-de-cocina.png"
+	},
+	"04 41 9C F9 29 02 89": {
+		"nombre": "Botella de Gaseosa",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-botella-de-gaseosa.png"
+	},
+	"04 41 6F 4A 2A 02 89": {
 		"nombre": "Botella de Agua",
 		"tipo": "plastico",
 		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-botella-de-agua.png"
 	},
-	"04 01 9E 48 2A 02 89": {
-		"nombre": "Cáscara de Banana",
-		"tipo": "organico",
-		"textura": "res://Assets/Sprites/Reciclaje/Residuos//Orgánico/Organico-Cascara-de-platano.png"
+	"04 81 B4 4A 2A 02 89": {
+		"nombre": "Bolsa de Plástico",
+		"tipo": "plastico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Plástico/Plastico-bolsas-plasticas.png"
 	},
-	"04 11 59 39 2A 02 89": {
-		"nombre": "Periódico Viejo",
+
+
+	"04 B1 56 4C 2A 02 89": {
+		"nombre": "Sobre de Papel",
 		"tipo": "papel",
-		"textura": "res://Assets/Sprites/Reciclaje/Residuos//Papel/Papel-periodicos.png"
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-sobres-de-papel.png"
+	},
+	"04 31 6D 3C 2A 02 89": {
+		"nombre": "Revistas Viejas",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-revistas.png"
+	},
+	"04 71 9C 47 2A 02 89": {
+		"nombre": "Periódicos",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-periodicos.png"
+	},
+	"04 81 9C 45 2A 02 89": {
+		"nombre": "Hojas Usadas",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-hojas-usadas.png"
+	},
+	"04 C1 FD 03 2A 02 89": {
+		"nombre": "Hojas de Impresora",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-hojas-de-impresora.png"
+	},
+	"04 B1 AD 3B 2A 02 89": {
+		"nombre": "Folletos",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-folletos.png"
+	},
+	"04 71 00 FC 29 02 89": {
+		"nombre": "Papel de Embalaje",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-embalaje.png"
+	},
+	"04 81 19 47 2A 02 89": {
+		"nombre": "Cartón de Huevos",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-carton-de-huevos.png"
+	},
+	"04 F1 14 49 2A 02 89": {
+		"nombre": "Cartón",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-carton.png"
+	},
+	"04 61 30 45 2A 02 89": {
+		"nombre": "Bolsas de Papel",
+		"tipo": "papel",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Papel/Papel-bolsas-de-papel.png"
+	},
+
+
+	"04 C1 5B 01 2A 02 89": {
+		"nombre": "Restos de Verduras",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-restos-de-verduras.png"
+	},
+	"04 11 91 40 2A 02 89": {
+		"nombre": "Restos de Plantas",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-restos-de-plantas.png"
+	},
+	"04 01 27 3D 2A 02 89": {
+		"nombre": "Restos de Café",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-restos-de-cafe.png"
+	},
+	"04 01 DB C4 29 02 89": {
+		"nombre": "Restos de Arroz",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-restos-de-arroz.png"
+	},
+	"04 81 1C 46 2A 02 89": {
+		"nombre": "Pan Viejo",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-pan-viejo.png"
+	},
+	"04 C1 BE 3B 2A 02 89": {
+		"nombre": "Manzana y Pera",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-manzana-y-pera.png"
+	},
+	"04 71 F1 42 2A 02 89": {
+		"nombre": "Cascaras de Papa",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-cascaras-de-papa.png"
+	},
+	"04 31 E0 3D 2A 02 89": {
+		"nombre": "Cascaras de Huevo",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-cascaras-de-huevo.png"
+	},
+	"04 A1 B3 3B 2A 02 89": {
+		"nombre": "Cascara de Platano",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-Cascara-de-platano.png"
+	},
+	"04 41 E2 48 2A 02 89": {
+		"nombre": "Bolsa de Te Usada",
+		"tipo": "organico",
+		"textura": "res://Assets/Sprites/Reciclaje/Residuos/Orgánico/Organico-bolsa-de-te.png"
 	}
 }
