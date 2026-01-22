@@ -32,4 +32,5 @@ func iniciar_juego(modo: int):
 	instancia_escena.modo_juego = modo
 	
 	get_tree().root.add_child(instancia_escena)
+	get_tree().current_scene = instancia_escena
 	self.queue_free()

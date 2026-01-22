@@ -19,6 +19,9 @@ var ultimo_uid_procesado = "" # Para evitar procesar el mismo mensaje dos veces 
 @onready var timer_nivel = $Timer
 @onready var feedback_visual = $UI/FeedbackVisual
 @onready var popup_resultados = $CapaUI/PopupResultados
+# NODOS DE FEEDBACK
+@onready var contenedor_caras = $UI/ContenedorCaras
+@onready var barra_tiempo = $UI/BarraTiempo
 
 # Datos
 var base_datos_residuos: Dictionary = {}
@@ -35,13 +38,13 @@ var tiempo_inicio: int = 0
 
 # Parámetros de dificultad (se cargan desde GameManager)
 var max_intentos: int = 10
-var tiempo_limite: int = 60
+var tiempo_limite: int = 30
 
 func _ready():
 	cargar_datos_json()
 	configurar_partida()
 	
-	# --- NUEVO: INICIAR CONEXIÓN WEBSOCKET ---
+	# --- INICIAR CONEXIÓN WEBSOCKET ---
 	var err = socket.connect_to_url(websocket_url)
 	if err != OK:
 		print("Error al conectar WebSocket: ", err)
@@ -78,16 +81,40 @@ func configurar_partida():
 	
 	match modo_juego:
 		Modos.CLASICO:
-			max_intentos = config["intentos_clasico"]
-			label_info.text = "Intentos: 0 / " + str(max_intentos)
+			max_intentos = config["intentos_clasico"] if modo_juego == Modos.CLASICO else 5
+			
+			barra_tiempo.visible = false
+			contenedor_caras.visible = true
+			generar_caras_iniciales()
+		
 		Modos.CONTRARRELOJ:
 			tiempo_limite = config["tiempo_limite"]
 			timer_nivel.wait_time = tiempo_limite
 			timer_nivel.timeout.connect(finalizar_juego)
 			timer_nivel.start()
+			
+			contenedor_caras.visible = false
+			barra_tiempo.visible = true
+			barra_tiempo.max_value = tiempo_limite
+			barra_tiempo.value = tiempo_limite
 		Modos.TUTORIAL:
 			max_intentos = 5 # Tutorial corto
 			label_info.text = "Tutorial: 0 / 5"
+
+# ### NUEVO: FUNCIÓN PARA CREAR LAS CARAS ###
+func generar_caras_iniciales():
+	# Limpiar hijos anteriores si reiniciamos
+	for hijo in contenedor_caras.get_children():
+		hijo.queue_free()
+	
+	# Crear una etiqueta por cada vida/intento
+	for i in range(max_intentos):
+		var lbl = Label.new()
+		lbl.text = "😐" # Cara neutral
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		# Aumentar tamaño de fuente para que se vean bien los emojis
+		lbl.add_theme_font_size_override("font_size", 32) 
+		contenedor_caras.add_child(lbl)
 
 func siguiente_basura():
 	if lista_ordenada_juego.is_empty():
@@ -111,7 +138,7 @@ func siguiente_basura():
 func _process(_delta):
 	if juego_terminado: return
 	
-	# --- NUEVO: LÓGICA DE ESCUCHA CONSTANTE (POLLING) ---
+	# --- LÓGICA DE ESCUCHA CONSTANTE (POLLING) ---
 	socket.poll() # Mantiene la conexión viva y revisa paquetes entrantes
 	var estado = socket.get_ready_state()
 	
@@ -127,7 +154,21 @@ func _process(_delta):
 	
 	# Actualizar UI de tiempo si es contrarreloj
 	if modo_juego == Modos.CONTRARRELOJ:
-		label_info.text = "Tiempo: %.1f" % timer_nivel.time_left
+		var tiempo_restante = timer_nivel.time_left
+		barra_tiempo.value = tiempo_restante
+		
+		# Calcular porcentaje (0.0 a 1.0)
+		var ratio = tiempo_restante / tiempo_limite
+		
+		# Cambiar color según urgencia
+		if ratio > 0.5:
+			barra_tiempo.tint_progress = Color.GREEN # Verde
+		elif ratio > 0.2:
+			barra_tiempo.tint_progress = Color.YELLOW # Amarillo
+		else:
+			barra_tiempo.tint_progress = Color.RED # Rojo
+			# Opcional: Hacer parpadear la barra si es rojo muy bajo
+			barra_tiempo.visible = int(Time.get_ticks_msec() / 100) % 2 == 0
 
 func procesar_mensaje_websocket(paquete_bytes):
 	var mensaje_str = paquete_bytes.get_string_from_utf8()
@@ -156,20 +197,41 @@ func validar_jugada(id_recibido: String, tacho_recibido: String):
 	
 	# 1. Comparación de ID Exacto
 	# Verificamos si el ID que envió el sensor es IDÉNTICO a la clave actual del JSON
-	var identificacion_correcta = (id_recibido == basura_actual_key)
+	var id_correcto = (id_recibido == basura_actual_key)
 	
 	# 2. Comparación de Tacho
 	var tacho_correcto = (tacho_recibido.to_lower() == basura_actual["tipo"].to_lower())
 	
 	print("Validando ID: ", id_recibido, " vs Actual: ", basura_actual_key)
-	print("Resultado: ID Correcto? ", identificacion_correcta, " | Tacho Correcto? ", tacho_correcto)
+	print("Resultado: ID Correcto? ", id_correcto, " | Tacho Correcto? ", tacho_correcto)
 	
-	if identificacion_correcta and tacho_correcto:
+	var es_exito = id_correcto and tacho_correcto
+	
+	if es_exito:
 		aciertos += 1
 		puntaje += 100
-		animar_resultado(true, tacho_recibido)
-	else:
-		animar_resultado(false, tacho_recibido)
+		
+	if modo_juego != Modos.CONTRARRELOJ:
+		actualizar_cara_resultado(intentos_totales - 1, es_exito)
+	
+	animar_resultado(es_exito, tacho_recibido)
+
+func actualizar_cara_resultado(indice: int, fue_exito: bool):
+	# Verificamos que no nos salgamos del array (por seguridad)
+	if indice < contenedor_caras.get_child_count():
+		var lbl_cara = contenedor_caras.get_child(indice)
+		
+		if fue_exito:
+			lbl_cara.text = "😁" # Cara feliz
+			lbl_cara.modulate = Color.GREEN # Teñir verde
+			
+			# Pequeña animación de "pop"
+			var tween = create_tween()
+			tween.tween_property(lbl_cara, "scale", Vector2(1.5, 1.5), 0.1)
+			tween.tween_property(lbl_cara, "scale", Vector2(1.0, 1.0), 0.1)
+		else:
+			lbl_cara.text = "😭" # Cara triste
+			lbl_cara.modulate = Color.RED
 
 func animar_resultado(es_exito: bool, tacho_destino: String):
 	# Determinar posición visual del tacho destino para mover la basura ahí
@@ -225,6 +287,9 @@ func procesar_intento(tipo_seleccionado: String, posicion_objetivo: Vector2):
 	tween.tween_property(sprite_basura, "global_position", posicion_objetivo + Vector2(0, 300), 0.3)
 	tween.tween_property(sprite_basura, "modulate:a", 0.0, 0.1) # Desvanecer
 	tween.tween_callback(chequear_condiciones_fin)
+	
+	if modo_juego != Modos.CONTRARRELOJ:
+		actualizar_cara_resultado(intentos_totales - 1, es_correcto)
 
 func mostrar_feedback(correcto: bool):
 	# Aquí implementas tu lógica de mostrar Visto/X y confeti

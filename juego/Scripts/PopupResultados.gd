@@ -35,11 +35,17 @@ func _on_reintentar_pressed():
 	get_tree().reload_current_scene() # Recarga la escena -> Dispara _ready() -> Carga nueva dificultad
 
 func _on_menu_pressed():
-	# Ir al menú principal
-	visible = false
-	get_tree().change_scene_to_file("res://Scenes/MenuPrincipal.tscn")
+	ir_a_escena("res://Scenes/MenuPrincipal.tscn")
 
 func _on_leaderboard_pressed():
-	# Ir al leaderboard
+	ir_a_escena("res://Scenes/Leaderboard.tscn")
+
+func ir_a_escena(ruta: String):
 	visible = false
-	get_tree().change_scene_to_file("res://Scenes/Leaderboard.tscn")
+	# 1. Cambiamos de escena
+	get_tree().change_scene_to_file(ruta)
+	
+	# 2. IMPORTANTE: Buscamos al nivel (el nodo abuelo o root de esta escena) y lo borramos manualmente
+	# Como PopupResultados está en CapaUI -> NivelReciclaje, el owner suele ser el nivel.
+	if owner:
+		owner.queue_free()
