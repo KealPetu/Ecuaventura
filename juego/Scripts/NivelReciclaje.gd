@@ -249,9 +249,22 @@ func finalizar_juego():
 	if juego_terminado: return
 	juego_terminado = true
 	timer_nivel.stop()
-	print("Juego Terminado. Enviando datos...")
 	
+	# 1. Guardar en Leaderboard LOCAL
+	var nombre_modo = "Clásico"
+	if modo_juego == Modos.CONTRARRELOJ: nombre_modo = "Contrarreloj"
+	elif modo_juego == Modos.TUTORIAL: nombre_modo = "Tutorial"
+	
+	# Solo guardamos si no es tutorial (opcional)
+	if modo_juego != Modos.TUTORIAL:
+		GameManager.registrar_puntaje(puntaje, nombre_modo)
+	
+	# 2. Enviar a Backend (Tu lógica existente)
+	print("Juego Terminado. Enviando datos...")
 	enviar_datos_backend()
+	
+	# Mostrar Feedback visual de "Juego Terminado"
+	# y ofrecer botón para ir al menú o ver leaderboard
 
 func enviar_datos_backend():
 	var duracion_segundos = Time.get_unix_time_from_system() - tiempo_inicio
