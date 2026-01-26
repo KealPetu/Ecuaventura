@@ -11,9 +11,9 @@ const WS_PORT = 8080;
 // Aquí defines qué "nombre de sensor" corresponde a qué "tipo de tacho" en el juego.
 // Ajusta esto según cómo hayas conectado tus cables/lectores.
 const MAPA_SENSORES = {
-    "Lector1": "papel",
-    "Lector2": "plastico",
-    "Lector3": "organico"
+    "Lector 3": "papel",
+    "Lector 2": "plastico",
+    "Lector 1": "organico"
 };
 
 // 1. INICIAR SERVIDOR HTTP (EXPRESS)

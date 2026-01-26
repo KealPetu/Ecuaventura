@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bft4rabnjhulf"]
+
+[ext_resource type="PackedScene" uid="uid://dhgs0gl6sea4s" path="res://Scenes/NivelReciclaje.tscn" id="1_ydait"]
+[ext_resource type="Script" uid="uid://dy8idekhtdpbx" path="res://Scripts/Niveles/NivelClasico.gd" id="2_vnfpn"]
+
+[node name="NivelClasico" instance=ExtResource("1_ydait")]
+script = ExtResource("2_vnfpn")
+
+[node name="Puntaje" parent="UI" index="0"]
+offset_top = 37.45
+offset_bottom = 60.450005
+metadata/_edit_use_anchors_ = true
+
+[node name="TiempoOIntentos" parent="UI" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ContenedorCaras" parent="UI" index="2"]
+metadata/_edit_use_anchors_ = true
+
+[node name="BotonVolver" parent="UI" index="4"]
+metadata/_edit_use_anchors_ = true
+
+[editable path="Fondo_Parallax"]

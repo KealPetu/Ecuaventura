@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dti2w36d6wt40"]
+
+[ext_resource type="PackedScene" uid="uid://dhgs0gl6sea4s" path="res://Scenes/NivelReciclaje.tscn" id="1_xbmrc"]
+[ext_resource type="Script" uid="uid://dwjsty487gtjs" path="res://Scripts/Niveles/NivelContrarreloj.gd" id="2_gmm6o"]
+
+[node name="NivelContrarreloj" instance=ExtResource("1_xbmrc")]
+script = ExtResource("2_gmm6o")
+
+[editable path="Fondo_Parallax"]

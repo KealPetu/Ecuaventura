@@ -10,7 +10,7 @@ var nombre_jugador: String = "Jugador" # Valor por defecto
 var ruta_leaderboard: String = "user://leaderboard.json"
 var datos_leaderboard: Array = []
 
-# --- NUEVO: CONFIGURACIÓN DINÁMICA DEL SERVIDOR ---
+# --- CONFIGURACIÓN DINÁMICA DEL SERVIDOR ---
 # Aquí guardaremos el objeto "configuracion_nivel_siguiente" entero
 var config_proximo_nivel: Dictionary = {}
 
@@ -56,6 +56,12 @@ func guardar_en_disco():
 	var json_string = JSON.stringify(datos_leaderboard, "\t")
 	file.store_string(json_string)
 	file.close()
+
+func resetear_configuracion_temporal():
+	# Borra la configuración que vino del servidor para iniciar una partida limpia
+	# usando los valores por defecto locales (config_base)
+	config_proximo_nivel = {}
+	print("Configuración temporal del servidor reseteada.")
 
 # Configuraciones de dificultad
 # Configuraciones por defecto (Fallback por si el servidor falla o es la primera partida)

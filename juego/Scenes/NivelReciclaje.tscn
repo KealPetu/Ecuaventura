@@ -1,22 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhgs0gl6sea4s"]
+[gd_scene load_steps=12 format=3 uid="uid://dhgs0gl6sea4s"]
 
+[ext_resource type="Script" uid="uid://fxk0nmqq6jdn" path="res://Scripts/Niveles/NivelBase.gd" id="1_1aogj"]
 [ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_33bv1"]
-[ext_resource type="Script" uid="uid://qjiparathki" path="res://Scripts/NivelReciclaje.gd" id="1_tbp4o"]
 [ext_resource type="Texture2D" uid="uid://b80jxu1e5ag0l" path="res://Assets/Sprites/fondo_2/1.png" id="2_f7scs"]
 [ext_resource type="Texture2D" uid="uid://fybnska08xnq" path="res://Assets/Sprites/fondo_2/2.png" id="3_onuyi"]
 [ext_resource type="Texture2D" uid="uid://dak2anm4ol6tg" path="res://Assets/Sprites/fondo_2/3.png" id="4_jh41q"]
 [ext_resource type="Texture2D" uid="uid://bsurq1r8jiai6" path="res://Assets/Sprites/fondo_2/4.png" id="5_i6715"]
-[ext_resource type="Texture2D" uid="uid://cq28867pn810y" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-papel.png" id="6_i6715"]
-[ext_resource type="Texture2D" uid="uid://owxtr0awihq7" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-plastico.png" id="7_tbp4o"]
-[ext_resource type="Texture2D" uid="uid://dqqyr3j0by0jw" path="res://Assets/Sprites/Reciclaje/Tachos/Tacho-organico.png" id="8_n6f2f"]
+[ext_resource type="PackedScene" uid="uid://dofoyfamuf0xb" path="res://Scenes/PopupResultados.tscn" id="8_1aogj"]
+[ext_resource type="Texture2D" uid="uid://bbv2o0d7wvyrn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-papel.png" id="9_1aogj"]
 [ext_resource type="Texture2D" uid="uid://cwh1mqrpuin5l" path="res://Assets/Sprites/placeholder.png" id="10_1aogj"]
-[ext_resource type="Script" uid="uid://bg7nb8uektr82" path="res://Scripts/PopupResultados.gd" id="10_7p3bt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7p3bt"]
-bg_color = Color(0, 0, 0, 0.7490196)
+[ext_resource type="Texture2D" uid="uid://dsmr13lsotuuk" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-plastico.png" id="10_uwfvr"]
+[ext_resource type="Texture2D" uid="uid://b04ntwtgrsbjn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-organico.png" id="11_1aogj"]
 
 [node name="NivelReciclaje" type="Node2D"]
-script = ExtResource("1_tbp4o")
+script = ExtResource("1_1aogj")
 
 [node name="Fondo_Parallax" parent="." instance=ExtResource("1_33bv1")]
 
@@ -33,43 +30,51 @@ texture = ExtResource("4_jh41q")
 texture = ExtResource("5_i6715")
 
 [node name="ContenedorBasuraActual" type="Node2D" parent="."]
-position = Vector2(800, 450)
+texture_filter = 1
+position = Vector2(800, 400)
 
 [node name="SpriteBasura" type="Sprite2D" parent="ContenedorBasuraActual"]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
 
-[node name="ContenedorTachos" type="HBoxContainer" parent="."]
-offset_top = 599.0
-offset_right = 1600.0
-offset_bottom = 1117.0
-alignment = 1
+[node name="LabelNombreResiduo" type="Label" parent="ContenedorBasuraActual"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.0
+offset_top = 100.0
+offset_right = 78.0
+offset_bottom = 149.00002
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.84705883, 0.8117647, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
+theme_override_font_sizes/font_size = 48
+text = "Botella"
+horizontal_alignment = 1
 
-[node name="TachoPapel" type="Sprite2D" parent="ContenedorTachos"]
-position = Vector2(300, 320)
-texture = ExtResource("6_i6715")
-
-[node name="TachoPlastico" type="Sprite2D" parent="ContenedorTachos"]
-position = Vector2(800, 320)
-texture = ExtResource("7_tbp4o")
-
-[node name="TachoOrganico" type="Sprite2D" parent="ContenedorTachos"]
-position = Vector2(1300, 320)
-texture = ExtResource("8_n6f2f")
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Puntaje" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 73.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
 
 [node name="TiempoOIntentos" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 32
 
-[node name="FeedbackVisual" type="TextureRect" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ContenedorCaras" type="HBoxContainer" parent="UI"]
+[node name="ContenedorCaras" type="GridContainer" parent="UI"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -77,7 +82,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
-alignment = 1
+columns = 5
 
 [node name="BarraTiempo" type="TextureProgressBar" parent="UI"]
 offset_right = 16.0
@@ -88,89 +93,68 @@ size_flags_vertical = 3
 step = 0.01
 texture_progress = ExtResource("10_1aogj")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="BotonVolver" type="Button" parent="UI"]
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 224.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 32
+text = "Regresar"
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="CapaUI" type="CanvasLayer" parent="."]
 
-[node name="PopupResultados" type="Control" parent="CapaUI"]
+[node name="PopupResultados" parent="CapaUI" instance=ExtResource("8_1aogj")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_7p3bt")
 
-[node name="Panel" type="Panel" parent="CapaUI/PopupResultados"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7p3bt")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CapaUI/PopupResultados/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContenedorTachos" type="HBoxContainer" parent="."]
+offset_top = 599.0
+offset_right = 1600.0
+offset_bottom = 1017.0
 alignment = 1
 
-[node name="Titulo" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 48
-text = "!Juego Terminado!"
-horizontal_alignment = 1
+[node name="TachoPapel" type="Sprite2D" parent="ContenedorTachos"]
+texture_filter = 1
+position = Vector2(300, 200)
+scale = Vector2(6, 6)
+texture = ExtResource("9_1aogj")
 
-[node name="LblPuntaje" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-text = "Puntaje Final: 0"
-horizontal_alignment = 1
+[node name="Papel" type="Label" parent="ContenedorTachos/TachoPapel"]
+offset_left = -13.0
+offset_top = -18.666666
+offset_right = 14.0
+offset_bottom = -8.666666
+theme_override_font_sizes/font_size = 10
+text = "Papel"
 
-[node name="LblPrecision" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-text = "Precision: 0%"
-horizontal_alignment = 1
+[node name="TachoPlastico" type="Sprite2D" parent="ContenedorTachos"]
+texture_filter = 1
+position = Vector2(800, 200)
+scale = Vector2(6, 6)
+texture = ExtResource("10_uwfvr")
 
-[node name="LblDificultad" type="Label" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-text = "Nueva Dificultad: Calculando..."
-horizontal_alignment = 1
+[node name="Plastico" type="Label" parent="ContenedorTachos/TachoPlastico"]
+offset_left = -19.166664
+offset_top = -17.666666
+offset_right = 19.833336
+offset_bottom = -7.666666
+theme_override_font_sizes/font_size = 10
+text = "Plástico"
 
-[node name="Botones" type="HBoxContainer" parent="CapaUI/PopupResultados/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-alignment = 1
+[node name="TachoOrganico" type="Sprite2D" parent="ContenedorTachos"]
+texture_filter = 1
+position = Vector2(1300, 200)
+scale = Vector2(6, 6)
+texture = ExtResource("11_1aogj")
 
-[node name="BtnReintentar" type="Button" parent="CapaUI/PopupResultados/Panel/VBoxContainer/Botones"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 32
-text = "Intentar de nuevo"
-
-[node name="BtnMenu" type="Button" parent="CapaUI/PopupResultados/Panel/VBoxContainer/Botones"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 32
-text = "Menu"
-
-[node name="BtnLeaderboard" type="Button" parent="CapaUI/PopupResultados/Panel/VBoxContainer/Botones"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 32
-text = "Leaderboard"
+[node name="Organico" type="Label" parent="ContenedorTachos/TachoOrganico"]
+offset_left = -22.499998
+offset_top = -18.333334
+offset_right = 21.500002
+offset_bottom = -8.333334
+theme_override_font_sizes/font_size = 10
+text = "Orgánico"
 
 [editable path="Fondo_Parallax"]
