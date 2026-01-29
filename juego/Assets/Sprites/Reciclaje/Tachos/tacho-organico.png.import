@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b04ntwtgrsbjn"
-path="res://.godot/imported/tacho-organico.png-c7a06b03291e15272a5cce274795e823.ctex"
+uid="uid://dqqyr3j0by0jw"
+path="res://.godot/imported/Tacho-organico.png-88f8b91dc7cc84bc821e0bdd8aa1eafe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Reciclaje/Tachos/tacho-organico.png"
-dest_files=["res://.godot/imported/tacho-organico.png-c7a06b03291e15272a5cce274795e823.ctex"]
+source_file="res://Assets/Sprites/Reciclaje/Tachos/Tacho-organico.png"
+dest_files=["res://.godot/imported/Tacho-organico.png-88f8b91dc7cc84bc821e0bdd8aa1eafe.ctex"]
 
 [params]
 

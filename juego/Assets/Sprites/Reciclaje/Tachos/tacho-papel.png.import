@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbv2o0d7wvyrn"
-path="res://.godot/imported/tacho-papel.png-cc3f5b2ff70fa82cdb145971456be8cb.ctex"
+uid="uid://cq28867pn810y"
+path="res://.godot/imported/Tacho-papel.png-bdfd1685e84ea0958418c8cf27f395b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Reciclaje/Tachos/tacho-papel.png"
-dest_files=["res://.godot/imported/tacho-papel.png-cc3f5b2ff70fa82cdb145971456be8cb.ctex"]
+source_file="res://Assets/Sprites/Reciclaje/Tachos/Tacho-papel.png"
+dest_files=["res://.godot/imported/Tacho-papel.png-bdfd1685e84ea0958418c8cf27f395b5.ctex"]
 
 [params]
 

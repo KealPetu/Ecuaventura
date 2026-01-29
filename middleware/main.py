@@ -8,11 +8,11 @@ import sys
 # ==========================================
 # 1. CONFIGURACIÓN
 # ==========================================
-ARDUINO_PORT = '/dev/ttyUSB0'  # O 'COM5' en Windows
+ARDUINO_PORT = 'COM5'  # O '/dev/ttyUSB0' en Linux
 BAUD_RATE = 9600
 WS_PORT = 8080                 # El puerto donde Godot se conectará
 
-# MAPA DE SENSORES (Traído de tu server_bridge.js)
+# MAPA DE SENSORES
 # Mapea el nombre físico del lector al tipo de residuo en el juego
 MAPA_SENSORES = {
     "Lector 3": "papel",

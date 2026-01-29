@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dofoyfamuf0xb"]
 
 [ext_resource type="Script" uid="uid://bg7nb8uektr82" path="res://Scripts/PopupResultados.gd" id="1_ngtgt"]
-[ext_resource type="Texture2D" uid="uid://b8oiunevhgyni" path="res://Assets/Sprites/Gemini_Generated_Image_rsmojwrsmojwrsmo-removebg-preview.png" id="2_o7mtw"]
+[ext_resource type="Texture2D" uid="uid://b8oiunevhgyni" path="res://Assets/Sprites/CartelResultados.png" id="2_o7mtw"]
 
 [node name="PopupResultados" type="Control"]
 layout_mode = 3

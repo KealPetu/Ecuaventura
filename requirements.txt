@@ -1,0 +1,15 @@
+# --- Servidor API y ML ---
+fastapi
+uvicorn
+pydantic
+pandas
+joblib
+numpy
+scikit-learn==1.6.1
+
+# --- Hardware y Comunicación ---
+pyserial
+websockets
+
+# --- Utilidades y Debug ---
+requests

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bft4rabnjhulf"]
 
-[ext_resource type="PackedScene" uid="uid://dhgs0gl6sea4s" path="res://Scenes/NivelReciclaje.tscn" id="1_ydait"]
+[ext_resource type="PackedScene" uid="uid://dhgs0gl6sea4s" path="res://Scenes/NivelBase.tscn" id="1_ydait"]
 [ext_resource type="Script" uid="uid://dy8idekhtdpbx" path="res://Scripts/Niveles/NivelClasico.gd" id="2_vnfpn"]
 
 [node name="NivelClasico" instance=ExtResource("1_ydait")]

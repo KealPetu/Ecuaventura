@@ -1,4 +1,3 @@
-# GameManager.gd
 extends Node
 
 # Variables de configuración global

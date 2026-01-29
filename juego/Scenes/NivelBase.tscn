@@ -1,33 +1,33 @@
 [gd_scene load_steps=12 format=3 uid="uid://dhgs0gl6sea4s"]
 
-[ext_resource type="Script" uid="uid://fxk0nmqq6jdn" path="res://Scripts/Niveles/NivelBase.gd" id="1_1aogj"]
-[ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="1_33bv1"]
-[ext_resource type="Texture2D" uid="uid://b80jxu1e5ag0l" path="res://Assets/Sprites/fondo_2/1.png" id="2_f7scs"]
-[ext_resource type="Texture2D" uid="uid://fybnska08xnq" path="res://Assets/Sprites/fondo_2/2.png" id="3_onuyi"]
-[ext_resource type="Texture2D" uid="uid://dak2anm4ol6tg" path="res://Assets/Sprites/fondo_2/3.png" id="4_jh41q"]
-[ext_resource type="Texture2D" uid="uid://bsurq1r8jiai6" path="res://Assets/Sprites/fondo_2/4.png" id="5_i6715"]
-[ext_resource type="PackedScene" uid="uid://dofoyfamuf0xb" path="res://Scenes/PopupResultados.tscn" id="8_1aogj"]
-[ext_resource type="Texture2D" uid="uid://bbv2o0d7wvyrn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-papel.png" id="9_1aogj"]
-[ext_resource type="Texture2D" uid="uid://cwh1mqrpuin5l" path="res://Assets/Sprites/placeholder.png" id="10_1aogj"]
-[ext_resource type="Texture2D" uid="uid://dsmr13lsotuuk" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-plastico.png" id="10_uwfvr"]
-[ext_resource type="Texture2D" uid="uid://b04ntwtgrsbjn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-organico.png" id="11_1aogj"]
+[ext_resource type="Script" uid="uid://fxk0nmqq6jdn" path="res://Scripts/Niveles/NivelBase.gd" id="1_106c4"]
+[ext_resource type="PackedScene" uid="uid://bt7y5rkrqt62k" path="res://Scenes/Fondo.tscn" id="2_num37"]
+[ext_resource type="Texture2D" uid="uid://b80jxu1e5ag0l" path="res://Assets/Sprites/fondo_2/1.png" id="3_wyk1a"]
+[ext_resource type="Texture2D" uid="uid://fybnska08xnq" path="res://Assets/Sprites/fondo_2/2.png" id="4_ybl5x"]
+[ext_resource type="Texture2D" uid="uid://dak2anm4ol6tg" path="res://Assets/Sprites/fondo_2/3.png" id="5_6dsnm"]
+[ext_resource type="Texture2D" uid="uid://bsurq1r8jiai6" path="res://Assets/Sprites/fondo_2/4.png" id="6_tfdlt"]
+[ext_resource type="Texture2D" uid="uid://cwh1mqrpuin5l" path="res://Assets/Sprites/placeholder.png" id="7_v7mvu"]
+[ext_resource type="PackedScene" uid="uid://dofoyfamuf0xb" path="res://Scenes/PopupResultados.tscn" id="8_t6igw"]
+[ext_resource type="Texture2D" uid="uid://bbv2o0d7wvyrn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-papel.png" id="9_8vdbj"]
+[ext_resource type="Texture2D" uid="uid://dsmr13lsotuuk" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-plastico.png" id="10_edw3n"]
+[ext_resource type="Texture2D" uid="uid://b04ntwtgrsbjn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-organico.png" id="11_okpwp"]
 
-[node name="NivelReciclaje" type="Node2D"]
-script = ExtResource("1_1aogj")
+[node name="NivelBase" type="Node2D"]
+script = ExtResource("1_106c4")
 
-[node name="Fondo_Parallax" parent="." instance=ExtResource("1_33bv1")]
+[node name="Fondo_Parallax" parent="." instance=ExtResource("2_num37")]
 
 [node name="1" parent="Fondo_Parallax/capa_1" index="0"]
-texture = ExtResource("2_f7scs")
+texture = ExtResource("3_wyk1a")
 
 [node name="2" parent="Fondo_Parallax/capa_2" index="0"]
-texture = ExtResource("3_onuyi")
+texture = ExtResource("4_ybl5x")
 
 [node name="3" parent="Fondo_Parallax/capa_3" index="0"]
-texture = ExtResource("4_jh41q")
+texture = ExtResource("5_6dsnm")
 
 [node name="4" parent="Fondo_Parallax/capa_4" index="0"]
-texture = ExtResource("5_i6715")
+texture = ExtResource("6_tfdlt")
 
 [node name="ContenedorBasuraActual" type="Node2D" parent="."]
 texture_filter = 1
@@ -91,7 +91,7 @@ scale = Vector2(100, 1)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 step = 0.01
-texture_progress = ExtResource("10_1aogj")
+texture_progress = ExtResource("7_v7mvu")
 
 [node name="BotonVolver" type="Button" parent="UI"]
 offset_left = 50.0
@@ -106,7 +106,7 @@ one_shot = true
 
 [node name="CapaUI" type="CanvasLayer" parent="."]
 
-[node name="PopupResultados" parent="CapaUI" instance=ExtResource("8_1aogj")]
+[node name="PopupResultados" parent="CapaUI" instance=ExtResource("8_t6igw")]
 visible = false
 
 [node name="ContenedorTachos" type="HBoxContainer" parent="."]
@@ -119,7 +119,7 @@ alignment = 1
 texture_filter = 1
 position = Vector2(300, 200)
 scale = Vector2(6, 6)
-texture = ExtResource("9_1aogj")
+texture = ExtResource("9_8vdbj")
 
 [node name="Papel" type="Label" parent="ContenedorTachos/TachoPapel"]
 offset_left = -13.0
@@ -133,7 +133,7 @@ text = "Papel"
 texture_filter = 1
 position = Vector2(800, 200)
 scale = Vector2(6, 6)
-texture = ExtResource("10_uwfvr")
+texture = ExtResource("10_edw3n")
 
 [node name="Plastico" type="Label" parent="ContenedorTachos/TachoPlastico"]
 offset_left = -19.166664
@@ -147,7 +147,7 @@ text = "Plástico"
 texture_filter = 1
 position = Vector2(1300, 200)
 scale = Vector2(6, 6)
-texture = ExtResource("11_1aogj")
+texture = ExtResource("11_okpwp")
 
 [node name="Organico" type="Label" parent="ContenedorTachos/TachoOrganico"]
 offset_left = -22.499998

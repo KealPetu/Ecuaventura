@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c634a2whr7jqr"]
 
-[ext_resource type="PackedScene" uid="uid://dhgs0gl6sea4s" path="res://Scenes/NivelReciclaje.tscn" id="1_u8kt2"]
+[ext_resource type="PackedScene" uid="uid://dhgs0gl6sea4s" path="res://Scenes/NivelBase.tscn" id="1_u8kt2"]
 [ext_resource type="Script" uid="uid://cr6f7ncpkxdr1" path="res://Scripts/Niveles/NivelTutorial.gd" id="2_6i5r1"]
 
 [node name="NivelTutorial" instance=ExtResource("1_u8kt2")]
