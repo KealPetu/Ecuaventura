@@ -1,7 +1,7 @@
 class_name NivelBase
 extends Node2D
 
-var predict_url = "http://127.0.0.1/predecir"
+var predict_url = "http://127.0.0.1:8000/predecir"
 
 # --- WEBSOCKET VARS ---
 var socket = WebSocketPeer.new()
@@ -298,11 +298,11 @@ func enviar_datos_backend(precision: float):
 	var payload = {
 		"total_aciertos": aciertos,
 		"total_intentos": intentos_totales,
-		"presicion_jugador": precision,
+		"precision_jugador": precision,
 		"puntaje_jugador": puntaje,
 		"tiempo_nivel": time_str,
 		"tipo_nivel": _obtener_nombre_modo_backend(),
-		"completo_totorial": str(_obtener_nombre_modo_backend() == "tutorial" and aciertos > 0)
+		"completo_tutorial": str(_obtener_nombre_modo_backend() == "tutorial" and aciertos > 0)
 	}
 	
 	var body = JSON.stringify(payload)

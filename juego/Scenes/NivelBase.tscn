@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bsurq1r8jiai6" path="res://Assets/Sprites/fondo_2/4.png" id="6_tfdlt"]
 [ext_resource type="Texture2D" uid="uid://cwh1mqrpuin5l" path="res://Assets/Sprites/placeholder.png" id="7_v7mvu"]
 [ext_resource type="PackedScene" uid="uid://dofoyfamuf0xb" path="res://Scenes/PopupResultados.tscn" id="8_t6igw"]
-[ext_resource type="Texture2D" uid="uid://bbv2o0d7wvyrn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-papel.png" id="9_8vdbj"]
-[ext_resource type="Texture2D" uid="uid://dsmr13lsotuuk" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-plastico.png" id="10_edw3n"]
-[ext_resource type="Texture2D" uid="uid://b04ntwtgrsbjn" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-organico.png" id="11_okpwp"]
+[ext_resource type="Texture2D" uid="uid://c3ee5srrx453f" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-papel.png" id="9_8vdbj"]
+[ext_resource type="Texture2D" uid="uid://wohrqx7tvf71" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-plastico.png" id="10_edw3n"]
+[ext_resource type="Texture2D" uid="uid://c34cxyh6s7rly" path="res://Assets/Sprites/Reciclaje/Tachos/tacho-organico.png" id="11_okpwp"]
 
 [node name="NivelBase" type="Node2D"]
 script = ExtResource("1_106c4")
